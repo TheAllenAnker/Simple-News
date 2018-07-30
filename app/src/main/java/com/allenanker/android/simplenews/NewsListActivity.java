@@ -134,7 +134,7 @@ public class NewsListActivity extends AppCompatActivity implements NewsListFragm
 
 
 /**
- * This is class is the solution I found online to eliminate the effect of shifting in BottomNavigationView
+ * This class is the solution I found online to eliminate the effect of shifting in BottomNavigationView
  */
 class BottomNavigationViewHelper {
     @SuppressLint("RestrictedApi")
