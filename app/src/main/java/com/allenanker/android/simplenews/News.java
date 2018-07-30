@@ -26,6 +26,10 @@ public class News {
         this.url = url;
     }
 
+    public UUID getid() {
+        return mUUID;
+    }
+
     public String getTitle() {
         return title;
     }

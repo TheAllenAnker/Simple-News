@@ -1,6 +1,8 @@
 package com.allenanker.android.simplenews;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 
@@ -9,7 +11,13 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.ExecutionException;
+
+import database.NewsDbSchema.NewsBaseHelper;
+import database.NewsDbSchema.NewsCursorWrapper;
+import database.NewsDbSchema.NewsDbSchema;
+import database.NewsDbSchema.NewsDbSchema.NewsTable;
 
 class RetrieveNews extends AsyncTask<String, Void, List<News>> {
 
@@ -54,6 +62,7 @@ public class NewsLab {
 
     private NewsLab(Context context) {
         mContext = context;
+        mDatabase = new NewsBaseHelper(mContext).getWritableDatabase();
     }
 
     public List<News> getNews(int type) {
@@ -105,5 +114,74 @@ public class NewsLab {
         return newsList;
     }
 
+    // database part
+    public List<News> getAllNews() {
+        List<News> newsList = new ArrayList<>();
 
+        NewsCursorWrapper cursor = queryNews(null, null);
+
+        try {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                newsList.add(cursor.getNews());
+                cursor.moveToNext();
+            }
+        } finally {
+            cursor.close();
+        }
+
+        return newsList;
+    }
+
+    public News getNews(UUID id) {
+        NewsCursorWrapper cursor = queryNews(
+                NewsTable.Cols.UUID + " = ?",
+                new String[] {id.toString()}
+        );
+
+        try {
+            if (cursor.getCount() == 0) {
+                return null;
+            }
+
+            cursor.moveToFirst();
+            return cursor.getNews();
+        } finally {
+            cursor.close();
+        }
+    }
+
+    public void addNews(News news) {
+        ContentValues values = getContentValues(news);
+        mDatabase.insert(NewsTable.NAME, null, values);
+    }
+
+    public void deleteNews(News news) {
+        mDatabase.delete(NewsTable.NAME, NewsTable.Cols.UUID + " = ?", new String[]{news.getid().toString()});
+    }
+
+    private NewsCursorWrapper queryNews(String whereClause, String[] whereArgs) {
+        Cursor cursor = mDatabase.query(
+                NewsTable.NAME,
+                null,
+                whereClause,
+                whereArgs,
+                null,
+                null,
+                null,
+                null
+        );
+
+        return new NewsCursorWrapper(cursor);
+    }
+
+    private static ContentValues getContentValues(News news) {
+        ContentValues values = new ContentValues();
+        values.put(NewsTable.Cols.UUID, news.getid().toString());
+        values.put(NewsTable.Cols.TITLE, news.getTitle());
+        values.put(NewsTable.Cols.SOURCE, news.getSource());
+        values.put(NewsTable.Cols.DES, news.getDes());
+        values.put(NewsTable.Cols.URL, news.getUrl());
+        return values;
+    }
 }
