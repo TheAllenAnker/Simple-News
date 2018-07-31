@@ -23,6 +23,8 @@ import java.util.List;
 
 public class NewsListActivity extends AppCompatActivity implements NewsListFragment.CallBacks {
 
+    public static String LOGIN_USER;
+
     private BottomNavigationView mBottomNavigationView;
     private ViewPagerAdapter mViewPagerAdapter;
     private ViewPager mViewPager;
@@ -32,6 +34,8 @@ public class NewsListActivity extends AppCompatActivity implements NewsListFragm
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_list);
+        Intent intent = getIntent();
+        LOGIN_USER = intent.getStringExtra("login_user_id");
         mBottomNavigationView = findViewById(R.id.bottom_nav_view);
         mBottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         BottomNavigationViewHelper.disableShiftMode(mBottomNavigationView);

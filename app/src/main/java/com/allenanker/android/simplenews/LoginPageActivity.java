@@ -152,7 +152,7 @@ public class LoginPageActivity extends AppCompatActivity {
 
                                 Intent intent = new Intent(LoginPageActivity.this, NewsListActivity.class);
 
-                                intent.putExtra("user_id", id);
+                                intent.putExtra("login_user_id", id);
 
                                 startActivity(intent);
 

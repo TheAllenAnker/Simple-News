@@ -179,6 +179,7 @@ public class NewsLab {
     private static ContentValues getContentValues(News news) {
         ContentValues values = new ContentValues();
         values.put(NewsTable.Cols.UUID, news.getid().toString());
+        values.put(NewsTable.Cols.USER_ID, NewsListActivity.LOGIN_USER);
         values.put(NewsTable.Cols.TITLE, news.getTitle());
         values.put(NewsTable.Cols.SOURCE, news.getSource());
         values.put(NewsTable.Cols.DES, news.getDes());

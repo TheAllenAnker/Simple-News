@@ -21,6 +21,7 @@ public class NewsBaseHelper extends SQLiteOpenHelper {
                 "create table " + NewsTable.NAME + "(" +
                         " _id integer primary key autoincrement, " +
                         NewsTable.Cols.UUID + ", " +
+                        NewsTable.Cols.USER_ID + ", " +
                         NewsTable.Cols.TITLE + ", " +
                         NewsTable.Cols.SOURCE + ", " +
                         NewsTable.Cols.DES + ", " +
