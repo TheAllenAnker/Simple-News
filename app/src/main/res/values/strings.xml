@@ -8,6 +8,6 @@
     <string name="international">国际</string>
     <string name="finance">金融</string>
     <string name="collection">收藏</string>
-    <string name="profile">我的</string>
+    <string name="profile">我</string>
     <string name="login">Login</string>
 </resources>
