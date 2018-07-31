@@ -101,7 +101,7 @@ public class NewsListActivity extends AppCompatActivity implements NewsListFragm
     public void onNewsSelected(News news) {
         Toast.makeText(this, "You clicked News " + news.getTitle(), Toast.LENGTH_SHORT).show();
         String url = news.getUrl();
-        if (url.startsWith("http://") || url.startsWith("https://"));
+        if (url.startsWith("http://") || url.startsWith("https://")) ;
         else url = "http://" + url;
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         startActivity(intent);

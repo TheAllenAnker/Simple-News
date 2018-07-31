@@ -29,7 +29,6 @@ public class RegisterActivity extends AppCompatActivity {
     LoadingDialog ld;
 
 
-
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +46,6 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
 
-
     private void addRegisterShow() {
 
         register_ok.setOnClickListener(new View.OnClickListener() {
@@ -56,15 +54,14 @@ public class RegisterActivity extends AppCompatActivity {
 
             public void onClick(View v) {
 
-                final String rUser=register_user.getText().toString().trim();
+                final String rUser = register_user.getText().toString().trim();
 
-                final String rPassword=register_password.getText().toString().trim();
-
+                final String rPassword = register_password.getText().toString().trim();
 
 
                 //判断用户名和密码是否为空,如果为空则不能进去。
 
-                if(rUser.length()>0&&rPassword.length()>0) {
+                if (rUser.length() > 0 && rPassword.length() > 0) {
 
                     BmobQuery<Person> query = new BmobQuery<>();
 
@@ -89,7 +86,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     register_password.setText("");
 
                                     break;
-                                }else {
+                                } else {
 
                                     p2 = new Person();
 
@@ -124,7 +121,6 @@ public class RegisterActivity extends AppCompatActivity {
                                         }
 
 
-
                                         @Override
 
                                         public void onFailure(int code, String msg) {
@@ -153,7 +149,7 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     });
 
-                }else{
+                } else {
 
                     Toast.makeText(RegisterActivity.this, "用户名或者密码不能为空", Toast.LENGTH_SHORT).show();
 
@@ -166,7 +162,6 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
 
-
     private void addControl() {
 
         register_user = findViewById(R.id.account);
@@ -174,9 +169,6 @@ public class RegisterActivity extends AppCompatActivity {
         register_password = findViewById(R.id.password);
 
         register_ok = findViewById(R.id.register);
-
-
-
 
 
     }

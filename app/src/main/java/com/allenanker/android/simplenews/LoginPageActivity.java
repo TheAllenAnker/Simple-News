@@ -17,8 +17,7 @@ import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.listener.FindListener;
 
-public class TestShow8 extends AppCompatActivity {
-
+public class LoginPageActivity extends AppCompatActivity {
 
 
     private Person p2;
@@ -47,17 +46,17 @@ public class TestShow8 extends AppCompatActivity {
 
         setContentView(R.layout.login);
 
-        sharedPreferences = getSharedPreferences("RememberPwd",MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("RememberPwd", MODE_PRIVATE);
 
         addControl();
 
-        boolean isRemembered = sharedPreferences.getBoolean("RememberPwd",false);
+        boolean isRemembered = sharedPreferences.getBoolean("RememberPwd", false);
 
-        if (isRemembered){
+        if (isRemembered) {
 
-            String account = sharedPreferences.getString("account","");
+            String account = sharedPreferences.getString("account", "");
 
-            String password = sharedPreferences.getString("password","");
+            String password = sharedPreferences.getString("password", "");
 
             lgUser.setText(account);
 
@@ -69,15 +68,7 @@ public class TestShow8 extends AppCompatActivity {
         addLogin();
 
 
-
-
-
-
-
-
-
     }
-
 
 
     private void addLogin() {
@@ -88,7 +79,7 @@ public class TestShow8 extends AppCompatActivity {
 
             public void onClick(View v) {
 
-                Intent intent=new Intent(TestShow8.this,RegisterActivity.class);
+                Intent intent = new Intent(LoginPageActivity.this, RegisterActivity.class);
 
                 startActivity(intent);
 
@@ -97,56 +88,55 @@ public class TestShow8 extends AppCompatActivity {
         });
 
 
-
         btn_ok.setOnClickListener(new View.OnClickListener() {
 
             @Override
 
             public void onClick(View v) {
 
-                BmobQuery<Person> query= new BmobQuery<>();
+                BmobQuery<Person> query = new BmobQuery<>();
 
-                query.findObjects(TestShow8.this,new FindListener<Person>(){
+                query.findObjects(LoginPageActivity.this, new FindListener<Person>() {
 
-                    String lgU=lgUser.getText().toString();
+                    String lgU = lgUser.getText().toString();
 
-                    String lgp=lgPassword.getText().toString();
+                    String lgp = lgPassword.getText().toString();
 
-                    int panduan=1;
+                    int panduan = 1;
 
                     @Override
 
                     public void onSuccess(List<Person> list) {
 
-                        for(int i=0;i<list.size();i++){
+                        for (int i = 0; i < list.size(); i++) {
 
-                            String name=list.get(i).getName().trim();
+                            String name = list.get(i).getName().trim();
 
-                            String password=list.get(i).getPassword().trim();
+                            String password = list.get(i).getPassword().trim();
 
-                            Log.e("user","唯一 id:"+list.get(i).getObjectId()+"----"+name+"---"+password);
+                            Log.e("user", "唯一 id:" + list.get(i).getObjectId() + "----" + name + "---" + password);
 
-                            if(name.equals(lgU) && password.equals(lgp)){
+                            if (name.equals(lgU) && password.equals(lgp)) {
 
                                 editor = sharedPreferences.edit();
 
-                                if (is_checked.isChecked()){
+                                if (is_checked.isChecked()) {
 
-                                    editor.putBoolean("RememberPwd",true);
+                                    editor.putBoolean("RememberPwd", true);
 
-                                    editor.putString("account",name);
+                                    editor.putString("account", name);
 
-                                    editor.putString("password",password);
-                                }else {
+                                    editor.putString("password", password);
+                                } else {
 
                                     editor.clear();
                                 }
 
                                 editor.apply();
 
-                                Toast.makeText(TestShow8.this, "登录成功", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginPageActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
 
-                                panduan=2;
+                                panduan = 2;
 
                                 //成功后panduan等于2,则跳出该循环,并且把输入快都清空,跳转到指定页面
 
@@ -154,10 +144,9 @@ public class TestShow8 extends AppCompatActivity {
 
                                 lgPassword.setText("");
 
-                                Intent intent=new Intent(TestShow8.this, NewsListActivity.class);
+                                Intent intent = new Intent(LoginPageActivity.this, NewsListActivity.class);
 
                                 startActivity(intent);
-
 
 
                                 break;
@@ -165,23 +154,20 @@ public class TestShow8 extends AppCompatActivity {
                             }
 
 
-
                         }
 
-                        if(panduan==1){
+                        if (panduan == 1) {
 
-                            Toast.makeText(TestShow8.this, "登录失败", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginPageActivity.this, "登录失败", Toast.LENGTH_SHORT).show();
 
                         }
 
                     }
 
 
-
                     @Override
 
                     public void onError(int i, String s) {
-
 
 
                     }
@@ -193,15 +179,10 @@ public class TestShow8 extends AppCompatActivity {
         });
 
 
-
-
-
     }
 
 
-
     private void addControl() {
-
 
 
         lgUser = findViewById(R.id.ed1);

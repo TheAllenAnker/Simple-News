@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 //        mLoginButton.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                Intent intent = new Intent(MainActivity.this, TestShow8.class);
+//                Intent intent = new Intent(MainActivity.this, LoginPageActivity.class);
 //                startActivity(intent);
 //            }
 //        });
@@ -48,16 +48,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.welcome);
         welcome = findViewById(R.id.welcome_page);
         showAnimation();
-        final Intent intent = new Intent(MainActivity.this, Front.class);
+        final Intent intent = new Intent(MainActivity.this, FrontActivity.class);
         Timer timer = new Timer();
         TimerTask task = new TimerTask() {
             @Override
-            public void run(){
+            public void run() {
                 MainActivity.this.finish();
                 startActivity(intent);
             }
         };
-        timer.schedule(task,3500);
+        timer.schedule(task, 3500);
     }
 
     private void showAnimation() {
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         alphaAnimation.setDuration(2000);
 
 
-        RotateAnimation rotateAnimation = new RotateAnimation(0,360,
+        RotateAnimation rotateAnimation = new RotateAnimation(0, 360,
                 Animation.RELATIVE_TO_SELF, 0.5f,
                 Animation.RELATIVE_TO_SELF, 0.5f);
         rotateAnimation.setDuration(2000);

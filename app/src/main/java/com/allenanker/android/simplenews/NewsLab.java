@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 
 import org.jsoup.Jsoup;
 import org.jsoup.select.Elements;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,15 +29,15 @@ class RetrieveNews extends AsyncTask<String, Void, List<News>> {
         News news;
         try {
             final org.jsoup.nodes.Document newsDoc = Jsoup.connect(urls[0]).get();
-            Elements newsElements = newsDoc.getElementsByAttributeValue("data-role","news-item");
-            for(org.jsoup.nodes.Element element:newsElements){
+            Elements newsElements = newsDoc.getElementsByAttributeValue("data-role", "news-item");
+            for (org.jsoup.nodes.Element element : newsElements) {
                 source = element.select("span[class=name]").first().text();
                 title = element.select("h4").text();
                 url = element.select("h4").first().selectFirst("a").attr("href");
                 news = new News(title, source, source, url);
                 newsList.add(news);
             }
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return newsList;
@@ -77,37 +78,37 @@ public class NewsLab {
             case 3:
                 newsList = getFinancialNews();
                 break;
-                default:
-                    newsList = getInternationalNews();
-                    break;
+            default:
+                newsList = getInternationalNews();
+                break;
         }
         return newsList;
     }
 
-    private List<News> getPoliticalNews(){
+    private List<News> getPoliticalNews() {
         List<News> newsList = new ArrayList<>();
         try {
-            newsList =  new RetrieveNews().execute(POLITICS_URL).get();
+            newsList = new RetrieveNews().execute(POLITICS_URL).get();
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
         return newsList;
     }
 
-    private List<News> getInternationalNews(){
+    private List<News> getInternationalNews() {
         List<News> newsList = new ArrayList<>();
         try {
-            newsList =  new RetrieveNews().execute(INTER_URL).get();
+            newsList = new RetrieveNews().execute(INTER_URL).get();
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
         return newsList;
     }
 
-    private List<News> getFinancialNews(){
+    private List<News> getFinancialNews() {
         List<News> newsList = new ArrayList<>();
         try {
-            newsList =  new RetrieveNews().execute(FINANCE_URL).get();
+            newsList = new RetrieveNews().execute(FINANCE_URL).get();
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
@@ -136,7 +137,7 @@ public class NewsLab {
     public News getNews(UUID id) {
         NewsCursorWrapper cursor = queryNews(
                 NewsTable.Cols.UUID + " = ?",
-                new String[] {id.toString()}
+                new String[]{id.toString()}
         );
 
         try {
