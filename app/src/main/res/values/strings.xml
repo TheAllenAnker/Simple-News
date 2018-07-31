@@ -11,4 +11,11 @@
     <string name="profile">我</string>
     <string name="login">Login</string>
     <string name="join_in_5">跳过5</string>
+    <string name="username">用户名：</string>
+    <string name="profile_words">I love you</string>
+    <string name="profile_gender">性别：</string>
+    <string name="profile_phone">电话:</string>
+    <string name="profile_email">邮箱：</string>
+    <string name="profile_into">兴趣爱好：</string>
+    <string name="profile_save">保存</string>
 </resources>

@@ -67,7 +67,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                     query.findObjects(RegisterActivity.this, new FindListener<Person>() {
 
-                        int panduan = 1;
+                        boolean isAccountLegal = true;
 
                         @Override
                         public void onSuccess(List<Person> list) {
@@ -77,99 +77,102 @@ public class RegisterActivity extends AppCompatActivity {
                                 String name = list.get(i).getName();
 
                                 if (name.equals(rUser)) {
-                                    Toast.makeText(RegisterActivity.this, "该账号已被注册，请更换账号", Toast.LENGTH_LONG).show();
 
-                                    panduan = 2;
-
-                                    register_user.setText("");
-
-                                    register_password.setText("");
+                                    isAccountLegal = false;
 
                                     break;
-                                } else {
-
-                                    p2 = new Person();
-
-                                    p2.setName(rUser);
-
-                                    p2.setPassword(rPassword);
-
-                                    //插入方法
-
-                                    p2.save(RegisterActivity.this, new SaveListener() {
-
-                                        @Override
-
-                                        public void onSuccess() {
-
-                                            // TODO Auto-generated method stub
-
-                                            ld.setLoadingText("注册中")
-                                                    .setSuccessText("注册成功")
-                                                    .setInterceptBack(true)
-                                                    .setLoadSpeed(LoadingDialog.Speed.SPEED_TWO)
-                                                    .show();
-                                            ld.loadSuccess();
-
-                                            register_password.setText("");
-
-                                            register_user.setText("");
-
-                                            //Toast.makeText(RegisterActivity.this, "添加数据成功，返回objectId为：" + p2.getObjectId(), Toast.LENGTH_SHORT).show();
-
-                                            //finish();
-                                        }
-
-
-                                        @Override
-
-                                        public void onFailure(int code, String msg) {
-
-                                            // TODO Auto-generated method stub
-
-                                            Toast.makeText(RegisterActivity.this, "创建数据失败：" + msg, Toast.LENGTH_SHORT).show();
-
-                                            ld.setLoadingText("注册中")
-                                                    .setSuccessText("注册失败")
-                                                    .setInterceptBack(true)
-                                                    .setLoadSpeed(LoadingDialog.Speed.SPEED_TWO)
-                                                    .show();
-                                            ld.loadFailed();
-
-                                        }
-
-                                    });
                                 }
                             }
+                            if (!isAccountLegal) {
+                                Toast.makeText(RegisterActivity.this, "该账号已被注册，请更换账号", Toast.LENGTH_LONG).show();
+
+                                register_user.setText("");
+
+                                register_password.setText("");
+                            } else {
+                                p2 = new Person();
+
+                                p2.setName(rUser);
+
+                                p2.setPassword(rPassword);
+
+                                //插入方法
+
+                                p2.save(RegisterActivity.this, new SaveListener() {
+
+                                    @Override
+
+                                    public void onSuccess() {
+
+                                        // TODO Auto-generated method stub
+
+                                        ld.setLoadingText("注册中")
+                                                .setSuccessText("注册成功")
+                                                .setInterceptBack(true)
+                                                .setLoadSpeed(LoadingDialog.Speed.SPEED_TWO)
+                                                .show();
+                                        ld.loadSuccess();
+
+                                        register_password.setText("");
+
+                                        register_user.setText("");
+
+                                        //Toast.makeText(RegisterActivity.this, "添加数据成功，返回objectId为：" + p2.getObjectId(), Toast.LENGTH_SHORT).show();
+
+                                        //finish();
+                                    }
+
+
+                                    @Override
+
+                                    public void onFailure(int code, String msg) {
+
+                                        // TODO Auto-generated method stub
+
+                                        Toast.makeText(RegisterActivity.this, "创建数据失败：" + msg, Toast.LENGTH_SHORT).show();
+
+                                        ld.setLoadingText("注册中")
+                                                .setSuccessText("注册失败")
+                                                .setInterceptBack(true)
+                                                .setLoadSpeed(LoadingDialog.Speed.SPEED_TWO)
+                                                .show();
+                                        ld.loadFailed();
+
+                                    }
+
+                                });
+                            }
+
+
                         }
 
-                        @Override
-                        public void onError(int i, String s) {
-
-                        }
-                    });
-
-                } else {
-
-                    Toast.makeText(RegisterActivity.this, "用户名或者密码不能为空", Toast.LENGTH_SHORT).show();
+                @Override
+                public void onError ( int i, String s){
 
                 }
+            });
 
-            }
+        } else{
 
-        });
+            Toast.makeText(RegisterActivity.this, "用户名或者密码不能为空", Toast.LENGTH_SHORT).show();
 
-    }
-
-
-    private void addControl() {
-
-        register_user = findViewById(R.id.account);
-
-        register_password = findViewById(R.id.password);
-
-        register_ok = findViewById(R.id.register);
-
+        }
 
     }
-}
+
+});
+
+        }
+
+
+private void addControl(){
+
+        register_user=findViewById(R.id.account);
+
+        register_password=findViewById(R.id.password);
+
+        register_ok=findViewById(R.id.register);
+
+
+        }
+        }

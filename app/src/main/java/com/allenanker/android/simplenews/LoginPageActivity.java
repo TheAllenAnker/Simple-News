@@ -102,6 +102,8 @@ public class LoginPageActivity extends AppCompatActivity {
 
                     String lgp = lgPassword.getText().toString();
 
+                    String id;
+
                     int panduan = 1;
 
                     @Override
@@ -119,6 +121,10 @@ public class LoginPageActivity extends AppCompatActivity {
                             if (name.equals(lgU) && password.equals(lgp)) {
 
                                 editor = sharedPreferences.edit();
+
+                                id = list.get(i).getObjectId();
+
+                                //Log.d("test",id);
 
                                 if (is_checked.isChecked()) {
 
@@ -145,6 +151,8 @@ public class LoginPageActivity extends AppCompatActivity {
                                 lgPassword.setText("");
 
                                 Intent intent = new Intent(LoginPageActivity.this, NewsListActivity.class);
+
+                                intent.putExtra("user_id", id);
 
                                 startActivity(intent);
 
