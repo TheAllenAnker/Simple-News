@@ -19,4 +19,6 @@
     <string name="profile_into">兴趣爱好：</string>
     <string name="profile_save">保存</string>
     <string name="tips_badge_removed">Badge Removed</string>
+    <string name="news_description">News Description</string>
+    <string name="news_title">News Title</string>
 </resources>

@@ -77,13 +77,35 @@ public class NewsListFragment extends Fragment {
 
         private TextView mTextView_title;
         private TextView mTextView_des;
+        private Button mCollectButton;
         private News mNews;
+
+        private int flag = 0;
 
         public NewsHolder(View itemView) {
             super(itemView);
             mTextView_title = itemView.findViewById(R.id.news_title);
             mTextView_des = itemView.findViewById(R.id.news_des);
+            mCollectButton = itemView.findViewById(R.id.collect);
             itemView.setOnClickListener(this);
+
+            mCollectButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    switch(flag){
+                        case 0:
+                            mCollectButton.setActivated(false);
+                            flag = 1;
+                            NewsLab.get(getActivity()).addNews(mNews);
+                            break;
+                        case 1:
+                            mCollectButton.setActivated(true);
+                            flag = 0;
+                            NewsLab.get(getActivity()).deleteNews(mNews);
+                            break;
+                    }
+                }
+            });
         }
 
         public void bind(News news) {
