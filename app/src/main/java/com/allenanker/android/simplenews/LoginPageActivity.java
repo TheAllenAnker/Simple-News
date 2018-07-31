@@ -116,7 +116,7 @@ public class LoginPageActivity extends AppCompatActivity {
 
                             String password = list.get(i).getPassword().trim();
 
-                            Log.e("user", "唯一 id:" + list.get(i).getObjectId() + "----" + name + "---" + password);
+//                            Log.d("user", "唯一 id:" + list.get(i).getObjectId() + "----" + name + "---" + password);
 
                             if (name.equals(lgU) && password.equals(lgp)) {
 

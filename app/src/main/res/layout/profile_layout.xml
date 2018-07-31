@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/profile_background"
+    android:layout_height="match_parent">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/img"
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        android:background="@drawable/profile_head"
+        android:src="@drawable/avatar"
+         />
+<android.support.v7.widget.LinearLayoutCompat
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_marginTop="15dp"
+    android:layout_height="42dp">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/img3"
+        android:layout_width="30dp"
+        android:layout_height="match_parent"
+
+        android:src="@drawable/android_icon" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="用户名："
+        android:textSize="30dp" />
+    <EditText
+        android:id="@+id/edt1"
+        android:layout_width="match_parent"
+        android:hint="i love you"
+        android:textSize="25dp"
+        android:layout_height="match_parent" />
+</android.support.v7.widget.LinearLayoutCompat>
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:layout_height="42dp">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img4"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/android_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="性别："
+            android:textSize="30dp" />
+        <EditText
+            android:id="@+id/edt2"
+            android:layout_width="match_parent"
+            android:hint="i love you"
+            android:textSize="25dp"
+            android:layout_height="match_parent" />
+    </android.support.v7.widget.LinearLayoutCompat>
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:layout_height="42dp">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/im5"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/android_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="电话："
+            android:textSize="30dp" />
+        <EditText
+            android:id="@+id/edt3"
+            android:layout_width="match_parent"
+            android:hint="i love you"
+            android:textSize="25dp"
+            android:layout_height="match_parent" />
+    </android.support.v7.widget.LinearLayoutCompat>
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:layout_height="42dp">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img6"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/android_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="邮箱："
+            android:textSize="30dp" />
+        <EditText
+            android:id="@+id/edt4"
+            android:layout_width="match_parent"
+            android:hint="i love you"
+            android:textSize="25dp"
+            android:layout_height="match_parent" />
+    </android.support.v7.widget.LinearLayoutCompat>
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:layout_height="42dp">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img7"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/android_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="兴趣爱好："
+            android:textSize="30dp" />
+        <EditText
+            android:id="@+id/edt5"
+            android:layout_width="match_parent"
+            android:hint="i love you"
+            android:textSize="25dp"
+            android:layout_height="match_parent" />
+    </android.support.v7.widget.LinearLayoutCompat>
+
+    <Button
+        android:id="@+id/minebutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="保存" />
+</LinearLayout>

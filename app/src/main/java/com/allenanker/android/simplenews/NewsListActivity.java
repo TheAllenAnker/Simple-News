@@ -2,8 +2,10 @@ package com.allenanker.android.simplenews;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
@@ -15,11 +17,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+
+import q.rorbin.badgeview.Badge;
+import q.rorbin.badgeview.QBadgeView;
 
 public class NewsListActivity extends AppCompatActivity implements NewsListFragment.CallBacks {
 
@@ -40,6 +50,16 @@ public class NewsListActivity extends AppCompatActivity implements NewsListFragm
         mBottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         BottomNavigationViewHelper.disableShiftMode(mBottomNavigationView);
         mViewPager = findViewById(R.id.news_viewpager);
+
+        addBadgeAt(1, 3);
+
+        Glide.with(this).load(R.drawable.title2).into(new SimpleTarget<Drawable>() {
+            @Override
+            public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
+                mBottomNavigationView.setBackground(resource);
+            }
+        });
+
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -67,12 +87,29 @@ public class NewsListActivity extends AppCompatActivity implements NewsListFragm
         mViewPager.setAdapter(mViewPagerAdapter);
         List<Fragment> fragments = new ArrayList<>();
         NewsListFragment newsListFragment = new NewsListFragment();
+        ProfileFragment profileFragment = new ProfileFragment();
         fragments.add(newsListFragment.newInstance(1));
         fragments.add(newsListFragment.newInstance(2));
         fragments.add(newsListFragment.newInstance(3));
         fragments.add(newsListFragment.newInstance(4));
-        fragments.add(newsListFragment.newInstance(5));
+        fragments.add(profileFragment);
         mViewPagerAdapter.setFragments(fragments);
+    }
+
+    private Badge addBadgeAt(int position, int number) {
+        return new QBadgeView(this)
+                .setBadgeNumber(number)
+                .setGravityOffset(12, 2, true)
+                .bindTarget(mBottomNavigationView)
+                .setOnDragStateChangedListener(new Badge.OnDragStateChangedListener() {
+                    @Override
+                    public void onDragStateChanged(int dragState, Badge badge, View targetView) {
+                        if (Badge.OnDragStateChangedListener.STATE_SUCCEED == dragState) {
+                            Toast.makeText(NewsListActivity.this, R.string.tips_badge_removed, Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                });
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -105,7 +142,7 @@ public class NewsListActivity extends AppCompatActivity implements NewsListFragm
     public void onNewsSelected(News news) {
         Toast.makeText(this, "You clicked News " + news.getTitle(), Toast.LENGTH_SHORT).show();
         String url = news.getUrl();
-        if (url.startsWith("http://") || url.startsWith("https://"));
+        if (url.startsWith("http://") || url.startsWith("https://")) ;
         else url = "http://" + url;
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         startActivity(intent);

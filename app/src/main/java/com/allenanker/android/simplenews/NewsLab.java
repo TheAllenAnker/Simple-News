@@ -79,6 +79,7 @@ public class NewsLab {
                 break;
             default:
                 newsList = getAllCollectedNews();
+//                newsList = new ArrayList<>();
                 break;
         }
         return newsList;

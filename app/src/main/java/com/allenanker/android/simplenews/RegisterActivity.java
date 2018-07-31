@@ -146,33 +146,33 @@ public class RegisterActivity extends AppCompatActivity {
 
                         }
 
-                @Override
-                public void onError ( int i, String s){
+                        @Override
+                        public void onError(int i, String s) {
+
+                        }
+                    });
+
+                } else {
+
+                    Toast.makeText(RegisterActivity.this, "用户名或者密码不能为空", Toast.LENGTH_SHORT).show();
 
                 }
-            });
 
-        } else{
+            }
 
-            Toast.makeText(RegisterActivity.this, "用户名或者密码不能为空", Toast.LENGTH_SHORT).show();
-
-        }
+        });
 
     }
 
-});
 
-        }
+    private void addControl() {
 
+        register_user = findViewById(R.id.account);
 
-private void addControl(){
+        register_password = findViewById(R.id.password);
 
-        register_user=findViewById(R.id.account);
-
-        register_password=findViewById(R.id.password);
-
-        register_ok=findViewById(R.id.register);
+        register_ok = findViewById(R.id.register);
 
 
-        }
-        }
+    }
+}

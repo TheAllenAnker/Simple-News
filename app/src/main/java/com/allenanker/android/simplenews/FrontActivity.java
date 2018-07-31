@@ -23,8 +23,8 @@ public class FrontActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(FrontActivity.this, LoginPageActivity.class);
-                FrontActivity.this.finish();
                 startActivity(intent);
+                FrontActivity.this.finish();
             }
         });
         final Timer timer = new Timer();
@@ -40,8 +40,8 @@ public class FrontActivity extends AppCompatActivity {
                         if (tm < 1) {
                             timer.cancel();
                             Intent intent = new Intent(FrontActivity.this, LoginPageActivity.class);
-                            FrontActivity.this.finish();
                             startActivity(intent);
+                            FrontActivity.this.finish();
                         }
                     }
                 });
