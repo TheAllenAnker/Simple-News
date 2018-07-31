@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         TimerTask task = new TimerTask() {
             @Override
             public void run(){
+                MainActivity.this.finish();
                 startActivity(intent);
             }
         };

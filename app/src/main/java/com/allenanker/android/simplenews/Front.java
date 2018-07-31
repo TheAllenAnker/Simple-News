@@ -1,16 +1,16 @@
 package com.allenanker.android.simplenews;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Front extends Activity {
+public class Front extends AppCompatActivity {
     private TextView textView;
     private int tm=5;
     @Override
@@ -22,6 +22,7 @@ public class Front extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(Front.this, TestShow8.class);
+                Front.this.finish();
                 startActivity(intent);
             }
         });
@@ -38,6 +39,7 @@ public class Front extends Activity {
                         if(tm < 1){
                             timer.cancel();
                             Intent intent=new Intent(Front.this, TestShow8.class);
+                            Front.this.finish();
                             startActivity(intent);
                         }
                     }
