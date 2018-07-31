@@ -17,7 +17,6 @@ import java.util.concurrent.ExecutionException;
 
 import database.NewsDbSchema.NewsBaseHelper;
 import database.NewsDbSchema.NewsCursorWrapper;
-import database.NewsDbSchema.NewsDbSchema;
 import database.NewsDbSchema.NewsDbSchema.NewsTable;
 
 class RetrieveNews extends AsyncTask<String, Void, List<News>> {
@@ -79,7 +78,7 @@ public class NewsLab {
                 newsList = getFinancialNews();
                 break;
             default:
-                newsList = getInternationalNews();
+                newsList = getAllCollectedNews();
                 break;
         }
         return newsList;
@@ -116,10 +115,11 @@ public class NewsLab {
     }
 
     // database part
-    public List<News> getAllNews() {
+    public List<News> getAllCollectedNews() {
         List<News> newsList = new ArrayList<>();
 
-        NewsCursorWrapper cursor = queryNews(null, null);
+        NewsCursorWrapper cursor = queryNews(NewsTable.Cols.USER_ID + " = ?",
+                new String[] {NewsListActivity.LOGIN_USER});
 
         try {
             cursor.moveToFirst();
