@@ -8,7 +8,7 @@ import database.NewsDbSchema.NewsDbSchema.NewsTable;
 
 public class NewsBaseHelper extends SQLiteOpenHelper {
 
-    private static final int VERSION = 2;
+    private static final int VERSION = 3;
     private static final String DATABASE_NAME = "newsBase.db";
     private static final String CREATE_TABLE = "create table " + NewsTable.NAME + "(" +
             " _id integer primary key autoincrement, " +
@@ -17,6 +17,7 @@ public class NewsBaseHelper extends SQLiteOpenHelper {
             NewsTable.Cols.TITLE + ", " +
             NewsTable.Cols.SOURCE + ", " +
             NewsTable.Cols.DES + ", " +
+            NewsTable.Cols.IMG_URL + ", " +
             NewsTable.Cols.URL +
             ")";
 

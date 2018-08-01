@@ -26,12 +26,14 @@ public class NewsCursorWrapper extends CursorWrapper {
         String source = getString(getColumnIndex(NewsTable.Cols.SOURCE));
         String description = getString(getColumnIndex(NewsTable.Cols.DES));
         String url = getString(getColumnIndex(NewsTable.Cols.URL));
+        String imageUrl = getString(getColumnIndex(NewsTable.Cols.IMG_URL));
 
         News news = new News(UUID.fromString(uuidString));
         news.setTitle(title);
         news.setSource(source);
         news.setDes(description);
         news.setUrl(url);
+        news.setImageUrl(imageUrl);
 
         return news;
     }

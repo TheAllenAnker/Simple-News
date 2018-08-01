@@ -11,6 +11,7 @@ public class NewsDbSchema {
             public static final String SOURCE = "source";
             public static final String DES = "description";
             public static final String URL = "url";
+            public static final String IMG_URL = "image_url";
         }
     }
 }

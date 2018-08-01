@@ -9,6 +9,7 @@ public class News {
     private String des;
     private String source;
     private String url;
+    private String imageUrl;
 
     public News() {
         this(UUID.randomUUID());
@@ -18,12 +19,13 @@ public class News {
         mUUID = uuid;
     }
 
-    public News(String title, String source, String des, String url) {
+    public News(String title, String source, String des, String url, String imageUrl) {
         mUUID = UUID.randomUUID();
         this.title = title;
         this.source = source;
         this.des = des;
         this.url = url;
+        this.imageUrl = imageUrl;
     }
 
     public UUID getid() {
@@ -60,5 +62,13 @@ public class News {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

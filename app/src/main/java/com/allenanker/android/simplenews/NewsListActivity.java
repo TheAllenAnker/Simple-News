@@ -84,7 +84,6 @@ public class NewsListActivity extends AppCompatActivity implements NewsListFragm
         });
 
         mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        mViewPager.setAdapter(mViewPagerAdapter);
         List<Fragment> fragments = new ArrayList<>();
         NewsListFragment newsListFragment = new NewsListFragment();
         ProfileFragment profileFragment = new ProfileFragment();
@@ -94,6 +93,7 @@ public class NewsListActivity extends AppCompatActivity implements NewsListFragm
         fragments.add(newsListFragment.newInstance(4));
         fragments.add(profileFragment);
         mViewPagerAdapter.setFragments(fragments);
+        mViewPager.setAdapter(mViewPagerAdapter);
     }
 
     private Badge addBadgeAt(int position, int number) {

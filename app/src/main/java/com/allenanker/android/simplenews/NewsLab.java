@@ -24,7 +24,7 @@ class RetrieveNews extends AsyncTask<String, Void, List<News>> {
     @Override
     protected List<News> doInBackground(String... urls) {
         List<News> newsList = new ArrayList<>();
-        String title, source, url;
+        String title, source, url, imageUrl;
         News news;
         try {
             final org.jsoup.nodes.Document newsDoc = Jsoup.connect(urls[0]).get();
@@ -33,7 +33,9 @@ class RetrieveNews extends AsyncTask<String, Void, List<News>> {
                 source = element.select("span[class=name]").first().text();
                 title = element.select("h4").text();
                 url = element.select("h4").first().selectFirst("a").attr("href");
-                news = new News(title, source, source, url);
+                imageUrl = element.select("div").attr("class","other")
+                        .first().select("img").first().attr("src");
+                news = new News(title, source, source, url, imageUrl);
                 newsList.add(news);
             }
         } catch (IOException e) {
@@ -189,6 +191,7 @@ public class NewsLab {
         values.put(NewsTable.Cols.SOURCE, news.getSource());
         values.put(NewsTable.Cols.DES, news.getDes());
         values.put(NewsTable.Cols.URL, news.getUrl());
+        values.put(NewsTable.Cols.IMG_URL, news.getImageUrl());
         return values;
     }
 }

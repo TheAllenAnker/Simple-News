@@ -2,6 +2,7 @@ package com.allenanker.android.simplenews;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -19,6 +21,7 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 
 import java.util.List;
+import java.util.Random;
 
 public class NewsListFragment extends Fragment {
     private List<News> mNewsList;
@@ -75,6 +78,7 @@ public class NewsListFragment extends Fragment {
 
     private class NewsHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        private ImageView mImageView;
         private TextView mTextView_title;
         private TextView mTextView_des;
         private Button mCollectButton;
@@ -87,6 +91,7 @@ public class NewsListFragment extends Fragment {
             mTextView_title = itemView.findViewById(R.id.news_title);
             mTextView_des = itemView.findViewById(R.id.news_des);
             mCollectButton = itemView.findViewById(R.id.collect);
+            mImageView = itemView.findViewById(R.id.news_img);
             itemView.setOnClickListener(this);
 
             mCollectButton.setOnClickListener(new View.OnClickListener() {
@@ -106,6 +111,8 @@ public class NewsListFragment extends Fragment {
                     }
                 }
             });
+            Random random = new Random();
+            int i = random.nextInt(9);
         }
 
         public void bind(News news) {
@@ -119,11 +126,17 @@ public class NewsListFragment extends Fragment {
             }
             mTextView_title.setText(news.getTitle());
             mTextView_des.setText(news.getDes());
+            fillImageView("http:" + mNews.getImageUrl());
         }
 
         @Override
         public void onClick(View v) {
             mCallBacks.onNewsSelected(mNews);
+        }
+
+        private void fillImageView(String imageUrl) {
+            Glide.with(getContext())
+                    .load(imageUrl).into(mImageView);
         }
     }
 
@@ -135,6 +148,10 @@ public class NewsListFragment extends Fragment {
         public NewsAdapter(Context context, List<News> newsList) {
             mContext = context;
             mNewsList = newsList;
+        }
+
+        public void display(String url) {
+
         }
 
         @NonNull
