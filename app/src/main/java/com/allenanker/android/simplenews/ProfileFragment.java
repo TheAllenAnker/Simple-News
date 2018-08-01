@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,13 +29,13 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.profile_layout, container, false);
+        View view = inflater.inflate(R.layout.profile, container, false);
         editText1 = view.findViewById(R.id.edt1);
         editText2 = view.findViewById(R.id.edt2);
         editText3 = view.findViewById(R.id.edt3);
         editText4 = view.findViewById(R.id.edt4);
         editText5 = view.findViewById(R.id.edt5);
-        profilebtn = view.findViewById(R.id.minebutton);
+        profilebtn = view.findViewById(R.id.save_profile_button);
         profilebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
