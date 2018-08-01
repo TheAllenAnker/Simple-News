@@ -40,7 +40,9 @@ public class FrontActivity extends AppCompatActivity {
                         if (tm < 1) {
                             timer.cancel();
                             Intent intent = new Intent(FrontActivity.this, LoginPageActivity.class);
-                            startActivity(intent);
+                            if (!FrontActivity.this.isDestroyed()) {
+                                startActivity(intent);
+                            }
                             FrontActivity.this.finish();
                         }
                     }

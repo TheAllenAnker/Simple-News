@@ -92,7 +92,7 @@ public class NewsListFragment extends Fragment {
             mCollectButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    switch(flag){
+                    switch (flag) {
                         case 0:
                             mCollectButton.setActivated(false);
                             flag = 1;
@@ -113,8 +113,7 @@ public class NewsListFragment extends Fragment {
             if (NewsLab.get(getActivity()).getNews(mNews.getid()) == null) {
                 flag = 0;
                 mCollectButton.setActivated(true);
-            }
-            else {
+            } else {
                 flag = 1;
                 mCollectButton.setActivated(false);
             }
