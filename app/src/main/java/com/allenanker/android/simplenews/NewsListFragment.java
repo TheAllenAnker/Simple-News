@@ -80,7 +80,7 @@ public class NewsListFragment extends Fragment {
         private Button mCollectButton;
         private News mNews;
 
-        private int flag = 0;
+        private int flag;
 
         public NewsHolder(View itemView) {
             super(itemView);
@@ -110,6 +110,14 @@ public class NewsListFragment extends Fragment {
 
         public void bind(News news) {
             mNews = news;
+            if (NewsLab.get(getActivity()).getNews(mNews.getid()) == null) {
+                flag = 0;
+                mCollectButton.setActivated(true);
+            }
+            else {
+                flag = 1;
+                mCollectButton.setActivated(false);
+            }
             mTextView_title.setText(news.getTitle());
             mTextView_des.setText(news.getDes());
         }
