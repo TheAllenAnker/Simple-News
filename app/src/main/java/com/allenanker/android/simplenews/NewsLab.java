@@ -120,7 +120,7 @@ public class NewsLab {
         List<News> newsList = new ArrayList<>();
 
         NewsCursorWrapper cursor = queryNews(NewsTable.Cols.USER_ID + " = ?",
-                new String[] {NewsListActivity.LOGIN_USER});
+                new String[]{NewsListActivity.LOGIN_USER});
 
         try {
             cursor.moveToFirst();
@@ -154,12 +154,16 @@ public class NewsLab {
     }
 
     public void addNews(News news) {
-        ContentValues values = getContentValues(news);
-        mDatabase.insert(NewsTable.NAME, null, values);
+        if (getNews(news.getid()) == null) {
+            ContentValues values = getContentValues(news);
+            mDatabase.insert(NewsTable.NAME, null, values);
+        }
     }
 
     public void deleteNews(News news) {
-        mDatabase.delete(NewsTable.NAME, NewsTable.Cols.UUID + " = ?", new String[]{news.getid().toString()});
+        if (getNews(news.getid()) != null) {
+            mDatabase.delete(NewsTable.NAME, NewsTable.Cols.UUID + " = ?", new String[]{news.getid().toString()});
+        }
     }
 
     private NewsCursorWrapper queryNews(String whereClause, String[] whereArgs) {
