@@ -140,11 +140,12 @@ public class NewsListActivity extends AppCompatActivity implements NewsListFragm
 
     @Override
     public void onNewsSelected(News news) {
-        Toast.makeText(this, "You clicked News " + news.getTitle(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "你点击了新闻 " + news.getTitle(), Toast.LENGTH_SHORT).show();
         String url = news.getUrl();
         if (url.startsWith("http://") || url.startsWith("https://")) ;
         else url = "http://" + url;
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        Intent intent = new Intent(NewsListActivity.this, WebViewActivity.class);
+        intent.putExtra("url", url);
         startActivity(intent);
     }
 
