@@ -1,7 +1,6 @@
 package com.allenanker.android.simplenews;
 
 
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.ColorStateList;

@@ -33,7 +33,7 @@ class RetrieveNews extends AsyncTask<String, Void, List<News>> {
                 source = element.select("span[class=name]").first().text();
                 title = element.select("h4").text();
                 url = element.select("h4").first().selectFirst("a").attr("href");
-                imageUrl = element.select("div").attr("class","other")
+                imageUrl = element.select("div").attr("class", "other")
                         .first().select("img").first().attr("src");
                 news = new News(title, source, source, url, imageUrl);
                 newsList.add(news);
